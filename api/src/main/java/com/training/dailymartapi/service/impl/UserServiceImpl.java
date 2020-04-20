@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 			this.userRepo.save(user);
 			return "User saved successfully";
 		} catch (DataIntegrityViolationException e) {
-			throw new RecordNotCreatedException("Something went wrong in saving user from service", e);
+			throw new RecordNotCreatedException("Something went wrong in adding user from service", e);
 		} catch (DataAccessException e) {
 			throw new RecordNotCreatedException("Something went wrong in accessing db from service", e);
 		}

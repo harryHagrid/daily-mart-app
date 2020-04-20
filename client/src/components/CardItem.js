@@ -1,18 +1,20 @@
 import React from 'react'
 import slide1 from '../images/book1.jpg'
-import '../components/CardItem.css'
+import '../styles/CardItem.css'
 
-function CardItem() {
+function CardItem(props) {
+
+    const { title, price, rating, descripton } = props;
 
     return (
         <div >
             <div className="card" style={{ width: "17rem", margin: "5px" }}>
                 <img src={slide1} class="card-img-top" alt="..." />
                 <div class="card-body">
-                    <h5 className="card-title">Book
-                    <span style={{ fontSize: "18px", color: "red", float: "right" }}>
-                            <i className="fas fa-rupee-sign"></i> 699
-                    </span>
+                    <h5 className="card-title">{title}
+                        <span style={{ fontSize: "18px", color: "red", float: "right" }}>
+                            <i className="fas fa-rupee-sign"></i> {price}
+                        </span>
 
 
                     </h5>
@@ -24,7 +26,7 @@ function CardItem() {
                         <span className="fa fa-star"></span>
                     </p>
                     <hr />
-                    <p className="card-text"> Books from book category.</p>
+                    <p className="card-text"> {descripton.slice(0, 25).concat('...')}</p>
                     <div className="row">
 
                         <a href="#" className="btn btn-success" style={{ margin: "5px" }}> View Details</a>
@@ -38,4 +40,12 @@ function CardItem() {
     )
 }
 
+
 export default CardItem
+
+CardItem.defaultProps = {
+    title: "Product",
+    price: "NA",
+    rating: 0,
+    descripton: "No information available"
+}

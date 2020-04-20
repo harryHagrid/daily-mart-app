@@ -1,4 +1,6 @@
-.header-slide {}
+.category-page {
+    margin: 60px;
+}
 
 .checked {
     color: orange;

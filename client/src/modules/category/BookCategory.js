@@ -2,12 +2,14 @@ import React from 'react';
 
 import slide1 from '../../images/book1.jpg'
 import CardItem from '../../components/CardItem';
+import './BookCategory.css';
+
 class BookCategory extends React.Component {
 
 
     render() {
         return (
-            <div>
+            <div className="category-page">
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item"><a href="/"><i className="fas fa-home"></i></a></li>
@@ -34,7 +36,7 @@ class BookCategory extends React.Component {
                         </div>
                         <div className="col-md-9">
                             <div className="row">
-                                <CardItem />
+                                <CardItem price="455" title = "Harry Potter" />
                                 <CardItem />
                                 <CardItem />
 

@@ -1,0 +1,38 @@
+.admin-category{
+
+}
+
+.add-category{
+
+    margin: 10px;
+    padding : 5px;
+
+}
+
+.add-category-action {
+    padding: 10px;
+    display: inline;
+}
+
+.category-list{
+
+    margin-top:20px;
+    padding : 10px;
+}
+
+.category-item {
+    padding : 5px;
+    
+}
+.category-card {
+    width : 12.5rem;
+    height : 7rem;
+    margin: 4px;
+    border :0px;
+}
+
+
+.back-button {
+    float:right;
+    margin:10px;
+}
