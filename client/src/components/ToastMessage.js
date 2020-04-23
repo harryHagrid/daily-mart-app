@@ -8,16 +8,17 @@ function ToastMessage(props) {
     useEffect(() => {
 
         console.log(props);
-
+        let stopTimerRequired = required;
         setMessage(response)
-        if(required) {
+        if(stopTimerRequired) {
             console.log("required");
             
             clearMessageInterval(stopTime)
-        }
-        
+        } 
+        // to prevent memory leak
+        return () => stopTimerRequired = false;
 
-    }, [response])
+    }, [])
 
     const clearMessageInterval = (stopTime) => {
         let startTime = new Date().getTime();

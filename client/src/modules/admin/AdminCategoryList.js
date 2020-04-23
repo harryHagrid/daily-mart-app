@@ -3,6 +3,7 @@ import "../../styles/AdminCategory.css";
 import axios from 'axios';
 import AddCategoryForm from './AddCategoryForm';
 import EditCategoryForm from './EditCategoryForm';
+import ToastMessage from '../../components/ToastMessage';
 
 function AdminCategoryList() {
 
@@ -13,6 +14,10 @@ function AdminCategoryList() {
         name: ""
     });
     const [showEditForm, setShowEditForm] = useState(false);
+    const [showDeleteResponseMsg, setShowDeleteResponseMsg] = useState({
+        success: false,
+        message: ""
+    });
 
 
     // function to get back the response from addCategoryForm
@@ -50,8 +55,21 @@ function AdminCategoryList() {
         setShowEditForm(true);
         console.log(editCategoryData);
 
+    }
 
+    const deleteCategoryBtn = async (item) => {
+        console.log(item);
 
+        await axios.delete(`http://localhost:8082/category/${item.cid}`)
+            .then(response => {
+                fetchCategoryList();
+                setShowDeleteResponseMsg(response.data);
+                console.log(response);
+
+            }, error => {
+                fetchCategoryList();
+                setShowDeleteResponseMsg(error.data);
+            })
 
     }
 
@@ -102,15 +120,22 @@ function AdminCategoryList() {
                         )
                         :
                         (
+
                             showEditForm ? (
-                                <EditCategoryForm editCategory={editCategoryData} editCategoryResponse={editCategoryResponse} goToCategoryList = {goToCategoryList} />
+                                <EditCategoryForm editCategory={editCategoryData} editCategoryResponse={editCategoryResponse} goToCategoryList={goToCategoryList} />
                             )
                                 : (
                                     <div>
+
                                         <h4><i className="fas fa-list"></i>&nbsp;Category List
                                    <span style={{ fontSize: "15px" }}> ({categoryList.length + 1} results found)</span>
                                         </h4>
                                         <hr />
+                                        {
+                                            showDeleteResponseMsg.message.length > 0 ?
+                                                ( <div><ToastMessage stopTime="6000" response={showDeleteResponseMsg.message} required={true} /></div>)
+                                                : (<div><ToastMessage stopTime="6000" response={showDeleteResponseMsg.message} required={true} /></div>)
+                                        }
                                         <div className="row">
 
                                             {categoryList.map(item => (
@@ -125,7 +150,7 @@ function AdminCategoryList() {
                                                                 </h6>
                                                             </div>
                                                             <button className="btn btn-dark btn-sm" onClick={() => editCategoryBtn(item)} ><i className="fas fa-edit" />&nbsp; Edit</button> &nbsp;
-                                                            <button className="btn btn-danger btn-sm"><i className="fas fa-trash" /> &nbsp; Delete</button>
+                                                            <button className="btn btn-danger btn-sm" onClick={() => deleteCategoryBtn(item)}><i className="fas fa-trash" /> &nbsp; Delete</button>
 
                                                         </div>
 

@@ -101,7 +101,7 @@ public class CategoryController {
 
 		String message = this.categoryService.deleteCategory(id);
 
-		response.setMessage("Successfully updated category.");
+		response.setMessage("Successfully deleted category.");
 		response.setHttpStatus(String.valueOf(HttpStatus.ACCEPTED));
 		response.setHttpStatusCode(202);
 		response.setBody(message);
